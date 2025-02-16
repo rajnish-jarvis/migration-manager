@@ -1,3 +1,3 @@
 MigrationManager::Engine.routes.draw do
-  get "hello", to: "migration/manager/hello#index"
+  get 'hello', to: 'hello#index'
 end
