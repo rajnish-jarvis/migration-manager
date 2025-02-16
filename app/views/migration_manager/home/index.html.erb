@@ -1,0 +1,41 @@
+<h1>Migration Status</h1>
+
+<% if @success_message %>
+  <p style="color: green;"><%= @success_message %></p>
+<% end %>
+
+<table border="1">
+  <thead>
+  <tr>
+    <th>Version</th>
+    <th>Name</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @all_migrations.each do |migration| %>
+    <tr>
+      <td><%= migration.version %></td>
+      <td><%= migration.name %></td>
+      <td>
+        <% if @migrations.include?(migration.version.to_s) %>
+          <span style="color: green;">Migrated</span>
+        <% else %>
+          <span style="color: red;">Pending</span>
+        <% end %>
+      </td>
+      <td>
+        <% unless @migrations.include?(migration.version.to_s) %>
+          <form action="<%= migration_manager.run_migration_path %>" method="post">
+            <input type="hidden" name="version" value="<%= migration.version %>">
+            <button type="submit">Migrate</button>
+          </form>
+        <% else %>
+          ✔
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

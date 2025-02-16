@@ -1,0 +1,54 @@
+<h1>Create a New Migration</h1>
+
+<form action="<%= migration_manager.create_migration_path %>" method="post">
+  <label>Migration Name (optional):</label>
+  <input type="text" name="migration_name" placeholder="Custom Migration Name">
+
+  <label>Operation:</label>
+  <select name="operation" id="operation">
+    <option value="create_table">Create Table</option>
+    <option value="alter_table">Modify Table</option>
+  </select>
+
+  <div id="table_select">
+    <label>Table Name:</label>
+    <select name="table_name">
+      <% @tables.each do |table| %>
+        <option value="<%= table %>"><%= table %></option>
+      <% end %>
+    </select>
+  </div>
+
+  <h3>Columns</h3>
+  <div id="columns">
+    <div class="column-row">
+      <input type="text" name="columns[][name]" placeholder="Column Name" required>
+      <select name="columns[][type]" required>
+        <option value="string">String</option>
+        <option value="integer">Integer</option>
+        <option value="boolean">Boolean</option>
+        <option value="text">Text</option>
+        <option value="datetime">Datetime</option>
+      </select>
+      <input type="text" name="columns[][default]" placeholder="Default Value (optional)">
+      <button type="button" onclick="removeColumn(this)">Remove</button>
+    </div>
+  </div>
+
+  <button type="button" onclick="addColumn()">+ Add Column</button>
+  <br><br>
+  <button type="submit">Generate Migration</button>
+</form>
+
+<script>
+  function addColumn() {
+    let newField = document.querySelector(".column-row").cloneNode(true);
+    newField.querySelector("input[name='columns[][name]']").value = "";
+    newField.querySelector("input[name='columns[][default]']").value = "";
+    document.getElementById("columns").appendChild(newField);
+  }
+
+  function removeColumn(button) {
+    button.parentElement.remove();
+  }
+</script>

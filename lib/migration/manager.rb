@@ -2,7 +2,7 @@ require "migration/manager/version"
 
 module Migration
   module Manager
-    class HelloController < ActionController::Base
+    class HomeController < ActionController::Base
       def index
         @text = "Hello, World!"
       end

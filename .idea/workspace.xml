@@ -4,8 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="884633e9-4c9d-4908-ac6b-367ad6beb5f1" name="Changes" comment="testing">
-      <change beforePath="$PROJECT_DIR$/app/controllers/migration_manager/hello_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/migration_manager/hello_controller.rb" afterDir="false" />
+    <list default="true" id="884633e9-4c9d-4908-ac6b-367ad6beb5f1" name="Changes" comment="listing migrations">
+      <change afterPath="$PROJECT_DIR$/app/controllers/migration_manager/home_controller.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/controllers/migration_manager/migration_builder_controller.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/views/migration_manager/home/index.html.erb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/migration_manager/hello_controller.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/migration_manager/hello/index.html.erb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/routes.rb" beforeDir="false" afterPath="$PROJECT_DIR$/config/routes.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/migration/manager.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/migration/manager.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -23,20 +30,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Ruby.engine.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;ruby.structure.view.model.defaults.configured&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Ruby.engine.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/rajnishmishra/RubymineProjects/migration-manager/app/views/migration_manager/home",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ruby.structure.view.model.defaults.configured": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/views/migration_manager/home" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="engine" type="RubyRunConfigurationType" factoryName="Ruby" temporary="true">
       <module name="migration-manager" />
@@ -82,7 +95,7 @@
       <workItem from="1739209274970" duration="1301000" />
       <workItem from="1739690025336" duration="1414000" />
       <workItem from="1739691571017" duration="1889000" />
-      <workItem from="1739694359841" duration="2002000" />
+      <workItem from="1739694359841" duration="2954000" />
     </task>
     <task id="LOCAL-00001" summary="testing">
       <option name="closed" value="true" />
@@ -140,7 +153,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739697700826</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="listing migrations">
+      <option name="closed" value="true" />
+      <created>1739697783998</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1739697783998</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -148,7 +169,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="testing" />
+    <MESSAGE value="listing migrations" />
+    <option name="LAST_COMMIT_MESSAGE" value="listing migrations" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/migration_manager@engine.rcov" NAME="engine Coverage Results" MODIFIED="1739690744420" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="migration-manager" />
