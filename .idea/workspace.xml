@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="884633e9-4c9d-4908-ac6b-367ad6beb5f1" name="Changes" comment="listing migrations">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/controllers/migration_manager/home_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/migration_manager/home_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/migration_manager/engine.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/migration_manager/engine.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/controllers/migration_manager/migration_builder_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/migration_manager/migration_builder_controller.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/views/migration_manager/migration_builder/new.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/migration_manager/migration_builder/new.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,7 +90,7 @@
       <workItem from="1739209274970" duration="1301000" />
       <workItem from="1739690025336" duration="1414000" />
       <workItem from="1739691571017" duration="1889000" />
-      <workItem from="1739694359841" duration="10480000" />
+      <workItem from="1739694359841" duration="12157000" />
     </task>
     <task id="LOCAL-00001" summary="testing">
       <option name="closed" value="true" />
@@ -268,7 +268,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739706035834</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="listing migrations">
+      <option name="closed" value="true" />
+      <created>1739706297869</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1739706297869</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

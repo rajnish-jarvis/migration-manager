@@ -1,7 +1,7 @@
 module MigrationManager
   class MigrationBuilderController < MigrationManager::ApplicationController
     def new
-      @tables = ActiveRecord::Base.connection.tables
+      @tables = ActiveRecord::Base.connection.tables.reject { |t| t == 'schema_migrations' }
     end
 
     def create

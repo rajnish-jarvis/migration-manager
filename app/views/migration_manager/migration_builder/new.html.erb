@@ -8,9 +8,16 @@
       <%= f.select :operation, ['Create Table', 'Add Column', 'Remove Column'], {}, id: "operation_type", class: "form-select" %>
     </div>
 
+    <!-- Table Name Field (Shown for Create Table) -->
     <div class="form-group" id="table_name_field">
       <label class="form-label">Table Name</label>
       <%= f.text_field :table_name, class: "form-input" %>
+    </div>
+
+    <!-- Table Selection Dropdown (Shown for Add Column) -->
+    <div class="form-group" id="table_select_field" style="display: none;">
+      <label class="form-label">Select Table</label>
+      <%= f.select :existing_table, @tables, {}, class: "form-select" %>
     </div>
 
     <div id="columns_section">
@@ -106,47 +113,56 @@
     document.addEventListener("DOMContentLoaded", function() {
         const operationSelect = document.getElementById("operation_type");
         const tableNameField = document.getElementById("table_name_field");
+        const tableSelectField = document.getElementById("table_select_field");
         const columnsSection = document.getElementById("columns_section");
         const addColumnButton = document.getElementById("add_column");
 
-        function toggleTableNameVisibility() {
+        function toggleTableFields() {
             if (operationSelect.value === "Create Table") {
-                tableNameField.style.display = "block";
-                columnsSection.style.display = "block";
+                tableNameField.style.display = "block";  // Show text input for table name
+                tableSelectField.style.display = "none"; // Hide dropdown
+                columnsSection.style.display = "block";  // Show columns section
+                addColumnButton.style.display = "block";
+            } else if (operationSelect.value === "Add Column") {
+                tableNameField.style.display = "none";   // Hide text input
+                tableSelectField.style.display = "block"; // Show dropdown for table selection
+                columnsSection.style.display = "block";  // Show columns section
                 addColumnButton.style.display = "block";
             } else {
-                tableNameField.style.display = "none";
-                columnsSection.style.display = "block";
-                addColumnButton.style.display = "block";
+                tableNameField.style.display = "none";   // Hide both for other operations
+                tableSelectField.style.display = "none";
+                columnsSection.style.display = "none";
+                addColumnButton.style.display = "none";
             }
         }
 
-        operationSelect.addEventListener("change", toggleTableNameVisibility);
-        toggleTableNameVisibility(); // Initial check on page load
+        operationSelect.addEventListener("change", toggleTableFields);
+        toggleTableFields(); // Initial check on page load
 
+        // Functionality for adding/removing columns dynamically
         addColumnButton.addEventListener("click", function() {
             const columnGroup = document.createElement("div");
             columnGroup.className = "form-group column-group";
             columnGroup.innerHTML = `
-            <label class="form-label">Column Name</label>
-            <input type="text" name="columns[][name]" class="form-input" placeholder="Enter column name">
+                <label class="form-label">Column Name</label>
+                <input type="text" name="columns[][name]" class="form-input" placeholder="Enter column name">
 
-            <label class="form-label">Column Type</label>
-            <select name="columns[][type]" class="form-select">
-                <option value="string">String</option>
-                <option value="integer">Integer</option>
-                <option value="boolean">Boolean</option>
-                <option value="text">Text</option>
-                <option value="date">Date</option>
-                <option value="datetime">Datetime</option>
-                <option value="jsonb">JSONB</option>
-            </select>
+                <label class="form-label">Column Type</label>
+                <select name="columns[][type]" class="form-select">
+                    <option value="string">String</option>
+                    <option value="integer">Integer</option>
+                    <option value="boolean">Boolean</option>
+                    <option value="text">Text</option>
+                    <option value="date">Date</option>
+                    <option value="datetime">Datetime</option>
+                    <option value="jsonb">JSONB</option>
+                </select>
 
-            <label class="form-label">Default Value</label>
-            <input type="text" name="columns[][default]" class="form-input" placeholder="Optional default value">
+                <label class="form-label">Default Value</label>
+                <input type="text" name="columns[][default]" class="form-input" placeholder="Optional default value">
 
-            <button type="button" class="remove-column form-button">Remove</button>
-        `;
+                <button type="button" class="remove-column form-button">Remove</button>
+            `;
 
             columnGroup.querySelector(".remove-column").addEventListener("click", function() {
                 columnGroup.remove();
