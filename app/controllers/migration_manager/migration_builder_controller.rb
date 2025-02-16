@@ -26,7 +26,7 @@ module MigrationManager
       <<~RUBY
         class #{name.camelize} < ActiveRecord::Migration[7.0]
           def change
-            #{operation == "create_table" ? create_table_code(table, columns) : alter_table_code(table, columns)}
+            #{operation == "Create Table" ? create_table_code(table, columns) : alter_table_code(table, columns)}
           end
         end
       RUBY
