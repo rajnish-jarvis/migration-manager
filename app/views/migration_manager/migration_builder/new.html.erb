@@ -1,7 +1,7 @@
 <div class="form-container">
   <h2>Create a New Migration</h2>
 
-  <%= form_with url: migration_manager_create_path, method: :post do |f| %>
+  <%= form_with url: migration_manager_create_migration_path, method: :post do |f| %>
 
     <div class="form-group">
       <label class="form-label">Operation Type</label>
@@ -31,3 +31,67 @@
     <%= f.submit "Create Migration", class: "form-button" %>
   <% end %>
 </div>
+
+<style>
+    /* Custom styles for Migration Manager */
+    .form-container {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-label {
+        font-weight: bold;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    .form-input, .form-select {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .form-button {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .form-button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const operationSelect = document.getElementById("operation_type");
+        const tableNameField = document.getElementById("table_name_field");
+
+        function toggleTableNameVisibility() {
+            if (operationSelect.value.toLowerCase() === "create table") {
+                tableNameField.style.display = "none";
+            } else {
+                tableNameField.style.display = "block";
+            }
+        }
+
+        operationSelect.addEventListener("change", toggleTableNameVisibility);
+        toggleTableNameVisibility(); // Initial check on page load
+    });
+</script>
