@@ -5,7 +5,7 @@ module MigrationManager
     end
 
     def create
-      migration_name = params[:migration_name].presence || "custom_migration_#{Time.now.to_i}"
+      migration_name = params[:migration_name].presence || "custom_migration"
       operation = params[:operation] # "create_table" or "alter_table"
       table_name = params[:table_name].presence
       columns = params[:columns] || []
@@ -17,14 +17,14 @@ module MigrationManager
 
       File.open(file_path, "w") { |file| file.write(migration_content) }
 
-      redirect_to migration_manager_home_path, notice: "Migration #{file_name} created successfully!"
+      redirect_to "#{request.base_url}/migration_manager/home", notice: "Migration #{file_name} created successfully!"
     end
 
     private
 
     def generate_migration_content(name, operation, table, columns)
       <<~RUBY
-        class #{name.camelize} < ActiveRecord::Migration[6.0]
+        class #{name.camelize} < ActiveRecord::Migration[7.0]
           def change
             #{operation == "create_table" ? create_table_code(table, columns) : alter_table_code(table, columns)}
           end

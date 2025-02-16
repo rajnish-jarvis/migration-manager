@@ -20,9 +20,9 @@ module MigrationManager
 
       if version.present?
         ActiveRecord::Migrator.run(:up, ActiveRecord::Migrator.migrations_paths, version.to_i)
-        redirect_to migration_manager_home_path(success: "Migration #{version} successfully run.")
+        redirect_to "#{request.base_url}/migration_manager/home", notice: "Migration #{version} successfully run.!"
       else
-        redirect_to migration_manager_home_path, alert: "Invalid migration version."
+        redirect_to "#{request.base_url}/migration_manager/home", alert: "Invalid migration version."
       end
     end
   end

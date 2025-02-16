@@ -3,170 +3,102 @@
 
   <%= form_with url: migration_manager.create_migration_path, method: :post do |f| %>
 
-    <!-- Operation Type -->
     <div class="form-group">
       <label class="form-label">Operation Type</label>
       <%= f.select :operation, ['Create Table', 'Add Column', 'Remove Column'], {}, id: "operation_type", class: "form-select" %>
     </div>
 
-    <!-- Table Name Field (Dropdown for Add/Remove Column, Text for Create Table) -->
-    <div class="form-group" id="table_name_dropdown">
+    <div class="form-group" id="table_name_field">
       <label class="form-label">Table Name</label>
-      <%= f.select :table_name, options_for_select(@tables), {}, class: "form-select" %>
-    </div>
-
-    <div class="form-group hidden" id="table_name_input">
-      <label class="form-label">New Table Name</label>
       <%= f.text_field :table_name, class: "form-input" %>
     </div>
 
-    <!-- Columns Container -->
-    <div id="columns_container">
+    <div id="columns_section">
       <div class="form-group column-group">
         <label class="form-label">Column Name</label>
-        <input type="text" name="columns[][name]" class="form-input" required>
+        <input type="text" name="columns[][name]" class="form-input" placeholder="Enter column name">
 
         <label class="form-label">Column Type</label>
         <select name="columns[][type]" class="form-select">
-          <option value="string">string</option>
-          <option value="integer">integer</option>
-          <option value="bigint">bigint</option>
-          <option value="boolean">boolean</option>
-          <option value="text">text</option>
-          <option value="date">date</option>
-          <option value="datetime">datetime</option>
-          <option value="jsonb">jsonb</option>
+          <option value="string">String</option>
+          <option value="integer">Integer</option>
+          <option value="boolean">Boolean</option>
+          <option value="text">Text</option>
+          <option value="date">Date</option>
+          <option value="datetime">Datetime</option>
+          <option value="jsonb">JSONB</option>
         </select>
 
         <label class="form-label">Default Value</label>
-        <input type="text" name="columns[][default]" class="form-input">
+        <input type="text" name="columns[][default]" class="form-input" placeholder="Optional default value">
 
-        <button type="button" class="remove-column-btn">Remove</button>
+        <button type="button" class="remove-column form-button">Remove</button>
       </div>
     </div>
 
-    <!-- Add More Columns Button -->
     <button type="button" id="add_column" class="form-button">Add Column</button>
 
     <%= f.submit "Create Migration", class: "form-button" %>
   <% end %>
 </div>
 
-<style>
-    /* Custom styles for Migration Manager */
-    .form-container {
-        max-width: 600px;
-        margin: 20px auto;
-        padding: 20px;
-        background: #f8f9fa;
-        border-radius: 8px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .form-group {
-        margin-bottom: 15px;
-    }
-
-    .form-label {
-        font-weight: bold;
-        display: block;
-        margin-bottom: 5px;
-    }
-
-    .form-input, .form-select {
-        width: 100%;
-        padding: 8px;
-        border: 1px solid #ced4da;
-        border-radius: 5px;
-    }
-
-    .hidden {
-        display: none;
-    }
-
-    .form-button {
-        background-color: #007bff;
-        color: white;
-        padding: 10px 15px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-    }
-
-    .form-button:hover {
-        background-color: #0056b3;
-    }
-
-    .column-group {
-        border: 1px solid #ddd;
-        padding: 10px;
-        margin-bottom: 10px;
-        border-radius: 5px;
-    }
-
-    .remove-column-btn {
-        background-color: red;
-        color: white;
-        border: none;
-        padding: 5px;
-        cursor: pointer;
-        margin-top: 5px;
-    }
-</style>
-
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const operationSelect = document.getElementById("operation_type");
-        const tableDropdown = document.getElementById("table_name_dropdown");
-        const tableInput = document.getElementById("table_name_input");
-        const columnsContainer = document.getElementById("columns_container");
-        const addColumnBtn = document.getElementById("add_column");
+        const tableNameField = document.getElementById("table_name_field");
+        const columnsSection = document.getElementById("columns_section");
+        const addColumnButton = document.getElementById("add_column");
 
         function toggleTableNameVisibility() {
             if (operationSelect.value === "Create Table") {
-                tableDropdown.style.display = "none";
-                tableInput.style.display = "block";
+                tableNameField.style.display = "block";
+                columnsSection.style.display = "block";
+                addColumnButton.style.display = "block";
             } else {
-                tableDropdown.style.display = "block";
-                tableInput.style.display = "none";
+                tableNameField.style.display = "none";
+                columnsSection.style.display = "block";
+                addColumnButton.style.display = "block";
             }
         }
 
         operationSelect.addEventListener("change", toggleTableNameVisibility);
-        toggleTableNameVisibility();
+        toggleTableNameVisibility(); // Initial check on page load
 
-        addColumnBtn.addEventListener("click", function() {
-            const newColumn = document.createElement("div");
-            newColumn.classList.add("form-group", "column-group");
-            newColumn.innerHTML = `
-                <label class="form-label">Column Name</label>
-                <input type="text" name="columns[][name]" class="form-input" required>
+        addColumnButton.addEventListener("click", function() {
+            const columnGroup = document.createElement("div");
+            columnGroup.className = "form-group column-group";
+            columnGroup.innerHTML = `
+            <label class="form-label">Column Name</label>
+            <input type="text" name="columns[][name]" class="form-input" placeholder="Enter column name">
 
-                <label class="form-label">Column Type</label>
-                <select name="columns[][type]" class="form-select">
-                  <option value="string">string</option>
-                  <option value="integer">integer</option>
-                  <option value="bigint">bigint</option>
-                  <option value="boolean">boolean</option>
-                  <option value="text">text</option>
-                  <option value="date">date</option>
-                  <option value="datetime">datetime</option>
-                  <option value="jsonb">jsonb</option>
-                </select>
+            <label class="form-label">Column Type</label>
+            <select name="columns[][type]" class="form-select">
+                <option value="string">String</option>
+                <option value="integer">Integer</option>
+                <option value="boolean">Boolean</option>
+                <option value="text">Text</option>
+                <option value="date">Date</option>
+                <option value="datetime">Datetime</option>
+                <option value="jsonb">JSONB</option>
+            </select>
 
-                <label class="form-label">Default Value</label>
-                <input type="text" name="columns[][default]" class="form-input">
+            <label class="form-label">Default Value</label>
+            <input type="text" name="columns[][default]" class="form-input" placeholder="Optional default value">
 
-                <button type="button" class="remove-column-btn">Remove</button>
-            `;
+            <button type="button" class="remove-column form-button">Remove</button>
+        `;
 
-            columnsContainer.appendChild(newColumn);
+            columnGroup.querySelector(".remove-column").addEventListener("click", function() {
+                columnGroup.remove();
+            });
+
+            columnsSection.appendChild(columnGroup);
         });
 
-        columnsContainer.addEventListener("click", function(event) {
-            if (event.target.classList.contains("remove-column-btn")) {
-                event.target.parentElement.remove();
-            }
+        document.querySelectorAll(".remove-column").forEach(button => {
+            button.addEventListener("click", function() {
+                button.parentElement.remove();
+            });
         });
     });
 </script>
