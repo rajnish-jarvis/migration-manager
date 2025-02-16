@@ -1,41 +1,131 @@
-<h1>Migration Status</h1>
+<div class="status-container">
+  <h1 class="status-title">Migration Status</h1>
 
-<% if @success_message %>
-  <p style="color: green;"><%= @success_message %></p>
-<% end %>
+  <div class="button-container">
+    <a href="<%= migration_manager.new_migration_path %>" class="nav-button">Create / Modify Migration</a>
+  </div>
 
-<table border="1">
-  <thead>
-  <tr>
-    <th>Version</th>
-    <th>Name</th>
-    <th>Status</th>
-    <th>Action</th>
-  </tr>
-  </thead>
-  <tbody>
-  <% @all_migrations.each do |migration| %>
-    <tr>
-      <td><%= migration.version %></td>
-      <td><%= migration.name %></td>
-      <td>
-        <% if @migrations.include?(migration.version.to_s) %>
-          <span style="color: green;">Migrated</span>
-        <% else %>
-          <span style="color: red;">Pending</span>
-        <% end %>
-      </td>
-      <td>
-        <% unless @migrations.include?(migration.version.to_s) %>
-          <form action="<%= migration_manager.run_migration_path %>" method="post">
-            <input type="hidden" name="version" value="<%= migration.version %>">
-            <button type="submit">Migrate</button>
-          </form>
-        <% else %>
-          ✔
-        <% end %>
-      </td>
-    </tr>
+  <% if @success_message %>
+    <p class="success-message"><%= @success_message %></p>
   <% end %>
-  </tbody>
-</table>
+
+  <table class="status-table">
+    <thead>
+    <tr>
+      <th>Version</th>
+      <th>Name</th>
+      <th>Status</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @all_migrations.each do |migration| %>
+      <tr>
+        <td><%= migration.version %></td>
+        <td><%= migration.name %></td>
+        <td>
+          <% if @migrations.include?(migration.version.to_s) %>
+            <span class="status-migrated">Migrated</span>
+          <% else %>
+            <span class="status-pending">Pending</span>
+          <% end %>
+        </td>
+        <td>
+          <% unless @migrations.include?(migration.version.to_s) %>
+            <form action="<%= migration_manager.run_migration_path %>" method="post">
+              <input type="hidden" name="version" value="<%= migration.version %>">
+              <button type="submit" class="migrate-button">Migrate</button>
+            </form>
+          <% else %>
+            ✔
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<style>
+    /* Migration Status Styles */
+    .status-container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .status-title {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .button-container {
+        text-align: right;
+        margin-bottom: 15px;
+    }
+
+    .nav-button {
+        display: inline-block;
+        background-color: #007bff;
+        color: white;
+        padding: 8px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s;
+    }
+
+    .nav-button:hover {
+        background-color: #0056b3;
+    }
+
+    .success-message {
+        color: green;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+
+    .status-table {
+        width: 100%;
+        border-collapse: collapse;
+        background: white;
+    }
+
+    .status-table th, .status-table td {
+        border: 1px solid #dee2e6;
+        padding: 10px;
+        text-align: left;
+    }
+
+    .status-table th {
+        background: #007bff;
+        color: white;
+    }
+
+    .status-migrated {
+        color: green;
+        font-weight: bold;
+    }
+
+    .status-pending {
+        color: red;
+        font-weight: bold;
+    }
+
+    .migrate-button {
+        background-color: #28a745;
+        color: white;
+        padding: 6px 12px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .migrate-button:hover {
+        background-color: #218838;
+    }
+</style>

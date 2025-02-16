@@ -10,7 +10,7 @@
 
     <div class="form-group" id="table_name_field">
       <label class="form-label">Table Name</label>
-      <%= f.text_field :table_name, class: "form-input" %>
+      <%= f.select :table_name, options_for_select(@tables), {}, class: "form-select" %>
     </div>
 
     <div class="form-group">
@@ -20,7 +20,7 @@
 
     <div class="form-group">
       <label class="form-label">Column Type</label>
-      <%= f.select :column_type, ['string', 'integer', 'boolean', 'text', 'date'], {}, class: "form-select" %>
+      <%= f.select :column_type, ['string', 'integer', 'bigint', 'boolean', 'text', 'date', 'datetime', 'jsonb'], {}, class: "form-select" %>
     </div>
 
     <div class="form-group">
@@ -84,7 +84,7 @@
         const tableNameField = document.getElementById("table_name_field");
 
         function toggleTableNameVisibility() {
-            if (operationSelect.value.toLowerCase() === "create table") {
+            if (operationSelect.value === "Create Table") {
                 tableNameField.style.display = "none";
             } else {
                 tableNameField.style.display = "block";
