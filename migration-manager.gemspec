@@ -6,7 +6,7 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Rajnish mishra"]
   spec.email         = ["rajnish.mishra@jarvis.consulting"]
 
-  spec.summary       = %q{Write a short summary, because RubyGems requires one.}
+  spec.summary       = %q{Migration Manager is a Ruby on Rails gem that provides a web interface for managing database migrations. It allows you to view migration statuses, run pending migrations, create new tables with multiple columns, and update existing tables by adding new columns.}
   spec.description   = %q{Write a longer description or delete this line.}
   spec.homepage      = "https://github.com/rajnish-jarvis"
   spec.license       = "MIT"
