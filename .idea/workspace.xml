@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="884633e9-4c9d-4908-ac6b-367ad6beb5f1" name="Changes" comment="listing migrations">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/migration_manager/middleware/skip_migration_check.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/migration_manager/middleware/skip_migration_check.rb" afterDir="false" />
-    </list>
+    <list default="true" id="884633e9-4c9d-4908-ac6b-367ad6beb5f1" name="Changes" comment="listing migrations" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -89,7 +86,7 @@
       <workItem from="1739209274970" duration="1301000" />
       <workItem from="1739690025336" duration="1414000" />
       <workItem from="1739691571017" duration="1889000" />
-      <workItem from="1739694359841" duration="8363000" />
+      <workItem from="1739694359841" duration="8695000" />
     </task>
     <task id="LOCAL-00001" summary="testing">
       <option name="closed" value="true" />
@@ -243,7 +240,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739704031009</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="listing migrations">
+      <option name="closed" value="true" />
+      <created>1739704146323</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1739704146323</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
