@@ -3,30 +3,50 @@
 
   <%= form_with url: migration_manager.create_migration_path, method: :post do |f| %>
 
+    <!-- Operation Type -->
     <div class="form-group">
       <label class="form-label">Operation Type</label>
       <%= f.select :operation, ['Create Table', 'Add Column', 'Remove Column'], {}, id: "operation_type", class: "form-select" %>
     </div>
 
-    <div class="form-group" id="table_name_field">
+    <!-- Table Name Field (Dropdown for Add/Remove Column, Text for Create Table) -->
+    <div class="form-group" id="table_name_dropdown">
       <label class="form-label">Table Name</label>
       <%= f.select :table_name, options_for_select(@tables), {}, class: "form-select" %>
     </div>
 
-    <div class="form-group">
-      <label class="form-label">Column Name</label>
-      <%= f.text_field :column_name, class: "form-input" %>
+    <div class="form-group hidden" id="table_name_input">
+      <label class="form-label">New Table Name</label>
+      <%= f.text_field :table_name, class: "form-input" %>
     </div>
 
-    <div class="form-group">
-      <label class="form-label">Column Type</label>
-      <%= f.select :column_type, ['string', 'integer', 'bigint', 'boolean', 'text', 'date', 'datetime', 'jsonb'], {}, class: "form-select" %>
+    <!-- Columns Container -->
+    <div id="columns_container">
+      <div class="form-group column-group">
+        <label class="form-label">Column Name</label>
+        <input type="text" name="columns[][name]" class="form-input" required>
+
+        <label class="form-label">Column Type</label>
+        <select name="columns[][type]" class="form-select">
+          <option value="string">string</option>
+          <option value="integer">integer</option>
+          <option value="bigint">bigint</option>
+          <option value="boolean">boolean</option>
+          <option value="text">text</option>
+          <option value="date">date</option>
+          <option value="datetime">datetime</option>
+          <option value="jsonb">jsonb</option>
+        </select>
+
+        <label class="form-label">Default Value</label>
+        <input type="text" name="columns[][default]" class="form-input">
+
+        <button type="button" class="remove-column-btn">Remove</button>
+      </div>
     </div>
 
-    <div class="form-group">
-      <label class="form-label">Default Value</label>
-      <%= f.text_field :default_value, class: "form-input" %>
-    </div>
+    <!-- Add More Columns Button -->
+    <button type="button" id="add_column" class="form-button">Add Column</button>
 
     <%= f.submit "Create Migration", class: "form-button" %>
   <% end %>
@@ -76,22 +96,77 @@
     .form-button:hover {
         background-color: #0056b3;
     }
+
+    .column-group {
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-bottom: 10px;
+        border-radius: 5px;
+    }
+
+    .remove-column-btn {
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 5px;
+        cursor: pointer;
+        margin-top: 5px;
+    }
 </style>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         const operationSelect = document.getElementById("operation_type");
-        const tableNameField = document.getElementById("table_name_field");
+        const tableDropdown = document.getElementById("table_name_dropdown");
+        const tableInput = document.getElementById("table_name_input");
+        const columnsContainer = document.getElementById("columns_container");
+        const addColumnBtn = document.getElementById("add_column");
 
         function toggleTableNameVisibility() {
             if (operationSelect.value === "Create Table") {
-                tableNameField.style.display = "none";
+                tableDropdown.style.display = "none";
+                tableInput.style.display = "block";
             } else {
-                tableNameField.style.display = "block";
+                tableDropdown.style.display = "block";
+                tableInput.style.display = "none";
             }
         }
 
         operationSelect.addEventListener("change", toggleTableNameVisibility);
-        toggleTableNameVisibility(); // Initial check on page load
+        toggleTableNameVisibility();
+
+        addColumnBtn.addEventListener("click", function() {
+            const newColumn = document.createElement("div");
+            newColumn.classList.add("form-group", "column-group");
+            newColumn.innerHTML = `
+                <label class="form-label">Column Name</label>
+                <input type="text" name="columns[][name]" class="form-input" required>
+
+                <label class="form-label">Column Type</label>
+                <select name="columns[][type]" class="form-select">
+                  <option value="string">string</option>
+                  <option value="integer">integer</option>
+                  <option value="bigint">bigint</option>
+                  <option value="boolean">boolean</option>
+                  <option value="text">text</option>
+                  <option value="date">date</option>
+                  <option value="datetime">datetime</option>
+                  <option value="jsonb">jsonb</option>
+                </select>
+
+                <label class="form-label">Default Value</label>
+                <input type="text" name="columns[][default]" class="form-input">
+
+                <button type="button" class="remove-column-btn">Remove</button>
+            `;
+
+            columnsContainer.appendChild(newColumn);
+        });
+
+        columnsContainer.addEventListener("click", function(event) {
+            if (event.target.classList.contains("remove-column-btn")) {
+                event.target.parentElement.remove();
+            }
+        });
     });
 </script>
