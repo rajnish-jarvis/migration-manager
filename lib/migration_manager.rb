@@ -1,3 +1,4 @@
+require "rails"
 require "migration_manager/engine"
 
 module MigrationManager

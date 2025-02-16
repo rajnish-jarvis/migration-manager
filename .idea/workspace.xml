@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="884633e9-4c9d-4908-ac6b-367ad6beb5f1" name="Changes" comment="testing">
-      <change afterPath="$PROJECT_DIR$/app/controllers/migration_manager/hello_controller.rb" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/views/migration_manager/hello/index.html.erb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/migration/manager/hello/index.html.erb" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/migration-manager.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/migration_manager.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/migration_manager.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/migration_manager.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/migration_manager/engine.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/migration_manager/engine.rb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/migration-manager.gemspec" beforeDir="false" afterPath="$PROJECT_DIR$/migration-manager.gemspec" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,7 +84,7 @@
       <workItem from="1739203692345" duration="1818000" />
       <workItem from="1739209274970" duration="1301000" />
       <workItem from="1739690025336" duration="1414000" />
-      <workItem from="1739691571017" duration="270000" />
+      <workItem from="1739691571017" duration="909000" />
     </task>
     <task id="LOCAL-00001" summary="testing">
       <option name="closed" value="true" />
@@ -112,7 +110,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739690938347</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="testing">
+      <option name="closed" value="true" />
+      <created>1739691883564</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1739691883564</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
