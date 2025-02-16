@@ -1,54 +1,33 @@
-<h1>Create a New Migration</h1>
+<div class="form-container">
+  <h2>Create a New Migration</h2>
 
-<form action="<%= migration_manager.create_migration_path %>" method="post">
-  <label>Migration Name (optional):</label>
-  <input type="text" name="migration_name" placeholder="Custom Migration Name">
+  <%= form_with url: migration_manager_create_path, method: :post do |f| %>
 
-  <label>Operation:</label>
-  <select name="operation" id="operation">
-    <option value="create_table">Create Table</option>
-    <option value="alter_table">Modify Table</option>
-  </select>
-
-  <div id="table_select">
-    <label>Table Name:</label>
-    <select name="table_name">
-      <% @tables.each do |table| %>
-        <option value="<%= table %>"><%= table %></option>
-      <% end %>
-    </select>
-  </div>
-
-  <h3>Columns</h3>
-  <div id="columns">
-    <div class="column-row">
-      <input type="text" name="columns[][name]" placeholder="Column Name" required>
-      <select name="columns[][type]" required>
-        <option value="string">String</option>
-        <option value="integer">Integer</option>
-        <option value="boolean">Boolean</option>
-        <option value="text">Text</option>
-        <option value="datetime">Datetime</option>
-      </select>
-      <input type="text" name="columns[][default]" placeholder="Default Value (optional)">
-      <button type="button" onclick="removeColumn(this)">Remove</button>
+    <div class="form-group">
+      <label class="form-label">Operation Type</label>
+      <%= f.select :operation, ['Create Table', 'Add Column', 'Remove Column'], {}, id: "operation_type", class: "form-select" %>
     </div>
-  </div>
 
-  <button type="button" onclick="addColumn()">+ Add Column</button>
-  <br><br>
-  <button type="submit">Generate Migration</button>
-</form>
+    <div class="form-group" id="table_name_field">
+      <label class="form-label">Table Name</label>
+      <%= f.text_field :table_name, class: "form-input" %>
+    </div>
 
-<script>
-  function addColumn() {
-    let newField = document.querySelector(".column-row").cloneNode(true);
-    newField.querySelector("input[name='columns[][name]']").value = "";
-    newField.querySelector("input[name='columns[][default]']").value = "";
-    document.getElementById("columns").appendChild(newField);
-  }
+    <div class="form-group">
+      <label class="form-label">Column Name</label>
+      <%= f.text_field :column_name, class: "form-input" %>
+    </div>
 
-  function removeColumn(button) {
-    button.parentElement.remove();
-  }
-</script>
+    <div class="form-group">
+      <label class="form-label">Column Type</label>
+      <%= f.select :column_type, ['string', 'integer', 'boolean', 'text', 'date'], {}, class: "form-select" %>
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Default Value</label>
+      <%= f.text_field :default_value, class: "form-input" %>
+    </div>
+
+    <%= f.submit "Create Migration", class: "form-button" %>
+  <% end %>
+</div>
