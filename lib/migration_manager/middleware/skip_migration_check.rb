@@ -11,10 +11,10 @@ module MigrationManager
         # Skip migration check only for MigrationManager routes
         if request.path.start_with?("/migration_manager")
           begin
-            # Force reload schema to bypass pending migration check
-            ActiveRecord::Base.connection.schema_migration.refresh_connection
+            # Reload migration context to bypass pending migration error
+            ActiveRecord::Base.connection.migration_context.migrations
           rescue ActiveRecord::PendingMigrationError
-            # Ignore pending migration error only for migration manager UI
+            # Ignore pending migration error only for MigrationManager UI
           end
         end
 
