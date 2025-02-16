@@ -1,2 +1,20 @@
-<h1><%= @text %></h1>
-<p>HIIIII</p>
+<h1>Migration Status</h1>
+
+<table border="1">
+  <thead>
+  <tr>
+    <th>Version</th>
+    <th>Migration Name</th>
+    <th>Status</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @migration_statuses.each do |migration| %>
+    <tr>
+      <td><%= migration[:version] %></td>
+      <td><%= migration[:name] %></td>
+      <td><%= migration[:status] %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

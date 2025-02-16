@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="884633e9-4c9d-4908-ac6b-367ad6beb5f1" name="Changes" comment="testing">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/controllers/migration_manager/hello_controller.rb" beforeDir="false" afterPath="$PROJECT_DIR$/app/controllers/migration_manager/hello_controller.rb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views/migration_manager/hello/index.html.erb" beforeDir="false" afterPath="$PROJECT_DIR$/app/views/migration_manager/hello/index.html.erb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +82,7 @@
       <workItem from="1739209274970" duration="1301000" />
       <workItem from="1739690025336" duration="1414000" />
       <workItem from="1739691571017" duration="1889000" />
-      <workItem from="1739694359841" duration="1929000" />
+      <workItem from="1739694359841" duration="2002000" />
     </task>
     <task id="LOCAL-00001" summary="testing">
       <option name="closed" value="true" />
@@ -134,7 +132,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739694757694</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="testing">
+      <option name="closed" value="true" />
+      <created>1739697700826</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1739697700826</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
