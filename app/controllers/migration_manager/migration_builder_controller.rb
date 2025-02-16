@@ -5,12 +5,17 @@ module MigrationManager
     end
 
     def create
-      migration_name = params[:migration_name].presence || "custom_migration"
       operation = params[:operation] # "create_table" or "alter_table"
       table_name = params[:table_name].presence
       columns = params[:columns] || []
 
-      file_name = "#{Time.now.strftime('%Y%m%d%H%M%S')}_#{migration_name.underscore}.rb"
+      return redirect_to request.referer, alert: "Table name is required" if table_name.blank?
+
+      migration_name = generate_migration_name(operation, table_name, columns)
+      timestamp = Time.now.strftime('%Y%m%d%H%M%S')
+      formatted_file_name = migration_name.underscore
+
+      file_name = "#{timestamp}_#{formatted_file_name}.rb"
       file_path = Rails.root.join("db/migrate/#{file_name}")
 
       migration_content = generate_migration_content(migration_name, operation, table_name, columns)
@@ -22,14 +27,25 @@ module MigrationManager
 
     private
 
+    def generate_migration_name(operation, table, columns)
+      if operation == "create_table"
+        "Create#{table.singularize.camelize}"
+      elsif operation == "alter_table" && columns.any?
+        column_names = columns.map { |col| col[:name].camelize }.join("And")
+        "Add#{column_names}To#{table.camelize}"
+      else
+        "Update#{table.camelize}"
+      end
+    end
+
     def generate_migration_content(name, operation, table, columns)
       <<~RUBY
-        class #{name.camelize} < ActiveRecord::Migration[7.0]
-          def change
-            #{operation == "Create Table" ? create_table_code(table, columns) : alter_table_code(table, columns)}
-          end
-        end
-      RUBY
+    class #{name} < ActiveRecord::Migration[7.0]
+      def change
+        #{operation == "create_table" ? create_table_code(table, columns) : alter_table_code(table, columns)}
+      end
+    end
+  RUBY
     end
 
     def create_table_code(table, columns)
