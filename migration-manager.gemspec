@@ -17,8 +17,8 @@ Gem::Specification.new do |spec|
   spec.metadata["changelog_uri"] = "https://github.com/rajnish-jarvis/migration-manager"
 
   # Exclude the .gem file from being listed
-  spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) do
-    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features|migration-manager-\d+\.\d+\.\d+\.gem)/}) }
+  spec.files = Dir.chdir(File.expand_path('..', __FILE__)) do
+    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features|migration-manager-0.1.0.gem)$}) }
   end
 
   spec.bindir        = "exe"
