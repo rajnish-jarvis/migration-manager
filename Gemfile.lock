@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    migration-manager (0.1.0)
+    migration-manager (1.0)
       rails (>= 6.0)
 
 GEM
@@ -114,7 +114,6 @@ GEM
       net-smtp
     marcel (1.0.4)
     mini_mime (1.1.5)
-    mini_portile2 (2.8.8)
     minitest (5.25.4)
     mutex_m (0.3.0)
     net-imap (0.4.19)
@@ -127,8 +126,7 @@ GEM
     net-smtp (0.5.1)
       net-protocol
     nio4r (2.7.4)
-    nokogiri (1.15.7)
-      mini_portile2 (~> 2.8.2)
+    nokogiri (1.15.7-arm64-darwin)
       racc (~> 1.4)
     pp (0.6.2)
       prettyprint
